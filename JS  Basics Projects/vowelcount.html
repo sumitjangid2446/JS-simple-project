@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel Counter</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;  
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .header h5 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        button {
+            background-color: #89f7fe;
+            color: #000;
+            height: 35px;
+            margin-top: 12px;
+            width: 120px;
+            border-radius: 20px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .output {
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fdfdfd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h5>Vowel Counter</h5>
+        </div>
+        <div class="textarea">
+            <textarea name="vowel" id="textarea" cols='22' rows="7" placeholder="Enter Your Text"></textarea>
+        </div>
+        <div class="count">
+            <button id="count">
+                Count Vowels
+            </button>
+        </div>
+        <div class="output"></div>
+    </div>
+
+    <script>
+        let textarea = document.querySelector('#textarea');
+        let button = document.querySelector("#count")
+        let output = document.querySelector(".output")
+
+        button.addEventListener('click', () => {
+            if (textarea.value.trim() === '') {
+                output.innerHTML = "Please enter some text.";
+            } else {
+                let val = textarea.value.toLowerCase();
+                let count = 0;
+                for (let i = 0; i < val.length; i++) {
+                    if ('aeiou'.includes(val[i])) {
+                        count++;
+                    }
+                }
+                output.innerHTML = `The number of vowels is: <strong>${count}</strong>`;
+            }
+        })
+    </script>
+</body>
+
+</html>

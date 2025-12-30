@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+        }
+
+        .converter {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background: #2193b0;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #176582;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="converter">
+        <h2>Unit Converter</h2>
+        <input type="number" id="inputValue" placeholder="Enter value" />
+        <select id="conversionType">
+            <option value="km-miles">Kilometers → Miles</option>
+            <option value="miles-km">Miles → Kilometers</option>
+            <option value="cm-inches">Centimeters → Inches</option>
+            <option value="inches-cm">Inches → Centimeters</option>
+            <option value="kg-pounds">Kilograms → Pounds</option>
+            <option value="pounds-kg">Pounds → Kilograms</option>
+            <option value="c-f">Celsius → Fahrenheit</option>
+            <option value="f-c">Fahrenheit → Celsius</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            let value = parseFloat(document.getElementById("inputValue").value);
+            let type = document.getElementById("conversionType").value;
+            let result = "";
+
+            if (isNaN(value)) {
+                result = "⚠️ Please enter a number!";
+            } else {
+                switch (type) {
+                    case "km-miles": result = (value * 0.621371).toFixed(2) + " Miles"; break;
+                    case "miles-km": result = (value / 0.621371).toFixed(2) + " Kilometers"; break;
+                    case "cm-inches": result = (value * 0.393701).toFixed(2) + " Inches"; break;
+                    case "inches-cm": result = (value / 0.393701).toFixed(2) + " Centimeters"; break;
+                    case "kg-pounds": result = (value * 2.20462).toFixed(2) + " Pounds"; break;
+                    case "pounds-kg": result = (value / 2.20462).toFixed(2) + " Kilograms"; break;
+                    case "c-f": result = ((value * 9 / 5) + 32).toFixed(2) + " °F"; break;
+                    case "f-c": result = ((value - 32) * 5 / 9).toFixed(2) + " °C"; break;
+                }
+            }
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+
+</body>
+
+</html>

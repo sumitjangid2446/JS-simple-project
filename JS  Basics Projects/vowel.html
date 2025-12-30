@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 400px;
+        text-align: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .header {
+        margin-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    #textarea {
+        width: 90%;
+        height: 200px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    button {
+        width: 90%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: blue;
+        cursor: pointer;
+        color: white;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+
+    .output {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Vowel Count</h1>
+        </div>
+        <div class="textarea">
+            <textarea name="vowelinput" id="textarea" cols="30" rows="20" placeholder="Enter Your text"></textarea>
+        </div>
+        <div class="count">
+            <button id="count">Calculate Vowels</button>
+        </div>
+        <div class="output">
+        </div>
+    </div>
+</body>
+<script>
+    let textarea = document.querySelector("#textarea")
+    let button = document.querySelector("#count")
+    let output = document.querySelector(".output")
+
+    button.addEventListener('click', () => {
+        if (textarea.value === '') {
+            output.innerHTML = "please Enter Some Text"
+        }
+        else {
+            let val = textarea.value;
+            let count = 0;
+            for (let i = 0; i < val.length; i++) {
+                if (val[i] === "i" || val[i] === "a" || val[i] === "e" || val[i] === "o" || val[i] === "u") {
+                    count++;
+                }
+            }
+            output.innerHTML = `The number of vowels are ${count}`;
+        }
+    })
+
+
+</script>
+
+</html>

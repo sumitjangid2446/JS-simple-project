@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    } 
+
+    body {
+      margin: 0;
+      padding: 0; 
+      background-color: #2d2c2c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      border: 3px solid #888787;
+      background-color: #121212;
+      padding: 20px;
+      /* width: 100%; */
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    table {
+      width: 95%;
+
+      border-collapse: collapse;
+    }
+
+    input[type="text"] {
+      width: 94%;
+      height: 50px;
+      font-size: 22px;
+      padding: 8px 13px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+
+    input[type="button"] {
+      width: 100%;
+      height: 50px;
+      font-size: 20px;
+      margin: 2px 8px;
+      /* margin-left: 20px; */
+      border-radius: 5px;
+      border: none;
+      background-color: #e1dfdf;
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #bfbdbd;
+    }
+
+    th {
+      /* background-color: rgb(119, 78, 3); */
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 400px) {
+      .container {
+        width: 100%;
+      }
+
+      input[type="button"],
+      input[type="text"] {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <table>
+      <tr>
+        <th colspan="3"><input type="text" id="v" readonly style="border: 3px solid #cac9c7;" /></th>
+        <th><input type="button" value="C" onclick="clr()" style="background-color: #f8812c;" /></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="1" onclick="pick('1')" /></th>
+        <th><input type="button" value="2" onclick="pick('2')" /></th>
+        <th><input type="button" value="3" onclick="pick('3')" /></th>
+        <th><input type="button" value="*" onclick="pick('*')" style="background-color: 	#f67c25;" /></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="4" onclick="pick('4')" /></th>
+        <th><input type="button" value="5" onclick="pick('5')" /></th>
+        <th><input type="button" value="6" onclick="pick('6')" /></th>
+        <th><input type="button" value="/" onclick="pick('/')" style="background-color: 	#fa7516;" /></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="7" onclick="pick('7')" /></th>
+        <th><input type="button" value="8" onclick="pick('8')" /></th>
+        <th><input type="button" value="9" onclick="pick('9')" /></th>
+        <th><input type="button" value="-" onclick="pick('-')" style="background-color:#fa7516;" /></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="." onclick="pick('.')" /></th>
+        <th><input type="button" value="0" onclick="pick('0')" /></th>
+        <th><input type="button" value="=" onclick="solve()" /></th>
+        <th><input type="button" value="+" onclick="pick('+')" style="background-color: #fa7516;" /></th>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function pick(val) {
+      document.getElementById("v").value += val;
+    }
+
+    function clr() {
+      document.getElementById("v").value = "";
+    }
+
+    function solve() {
+      let s = document.getElementById("v").value;
+      try {
+        document.getElementById("v").value = eval(s);
+      } catch (e) {
+        alert("Invalid Expression");
+      }
+    }
+  </script>
+</body>
+
+</html>

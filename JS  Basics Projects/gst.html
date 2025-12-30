@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        background-color:#1e293b;
+        /* background: rgba(255, 255, 255, 0.1); */
+        /* background-color: #1e293b; */
+        /* background-color: #0f172a; */
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .box {
+        padding: 12px 19px;
+        background: linear-gradient(135deg, #1eafed, #9192e3);
+
+        /* background-color: #1a1a1a; */
+        /* background: linear-gradient(to left bottom, rgb(158, 253, 158), rgb(77, 172, 203)); */
+        border-radius: 30px;
+        display: flex;
+        width: 380px;
+        height: 350px;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+       
+    }
+
+    .box h2 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    label {
+        padding: 8px 10px;
+        margin-left: 13px;
+        /* font-size: 1.4rem; */
+        font-size: 1.6rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    input {
+        border-radius: 4px;
+        height: 22px;
+        padding:3px 6px;
+        width: 200px;
+        margin-left:35px;
+        border: none;
+        outline: none;
+    }
+    button {
+        width: 110px;
+        height: 40px;
+        margin-left: 36%;
+        margin-top: 20px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        font-size: 1.3rem;
+        background-color: #a9ebab;
+        transition: 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background-color: rgb(1, 249, 166);
+    }  
+    p {
+        font-size: 1.4rem;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+</style>
+<body>
+    <div class="box">
+        <h2>GST Calculate</h2>
+        <label for="amt">
+            Amount
+            <input type="number" id="amt">
+        </label>
+        <label for="amt">
+            Gst Per.
+            <input type="number" id='gst'>
+        </label>
+        <button id="btn" onclick="Calculate()">Calculate</button>
+        <p id="text"> Your Gst Amt :-</p>
+    </div>
+</body>
+<script>
+    function Calculate() {
+
+        let Amt =parseInt( document.getElementById('amt').value);
+        let per = parseInt( document.getElementById('gst').value);
+        let cal =  document.getElementById('btn');
+        let msg =  document.getElementById('text')
+           if (isNaN(Amt) || isNaN(per)) {
+            msg.innerHTML = 'Enter a valid data'
+            msg.style.color = 'red'
+        }
+        else {
+            let gstamt=Amt*per/100;
+            let total=Amt+gstamt;
+            msg.innerHTML = 'Your GST Amount: ₹  ' + gstamt.toFixed(2) + '<br>Total Amount: ₹  ' + total.toFixed(2);
+           
+        }
+    }
+
+
+</script>
+
+</html>

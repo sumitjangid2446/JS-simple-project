@@ -1,0 +1,233 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Heebo:300&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-color: #000;
+    --secondary-color: #fff;
+  }
+
+  html {
+    transition: all 0.5s ease-in;
+  }
+
+  html.dark {
+    --primary-color: #fff;
+    --secondary-color: #333;
+  }
+
+  html.dark {
+    background-color: #111;
+    color: var(--primary-color);
+  }
+
+  body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+  }
+
+  .toggle {
+    /* background-color:white; */
+    background-color: #000;
+    color: #fff;
+    /* color: var(--secondary-color); */
+    cursor: pointer;
+    border: 0;
+    margin-left: 450px;
+    border-radius: 5px;
+    padding: 4px 5px;
+    position: absolute;
+    top: 10px;
+  }
+
+  .toggle.toggle:focus {
+    outline: none;
+  }
+
+  .clock-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .clock {
+    height: 200px;
+    width: 200px;
+    position: relative;
+  }
+
+  .needle {
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    width: 1.3%;
+    height: 60%;
+    left: 50%;
+    transform-origin: bottom center;
+    transition: all 0.5s ease-in linear;
+  }
+
+  .needle.hour {
+    transform: translate(-50%, -100%)rotate(0deg);
+  }
+
+  .needle.minute {
+    transform: translate(-50%, -100%)rotate(0deg);
+    height: 100px;
+  }
+
+  .needle.second {
+    transform: translate(-50%, -100%)rotate(0deg);
+    height: 100px;
+    background-color: rgb(245, 65, 0);
+  }
+
+  .center-point {
+    background-color: rgb(245, 65, 0);
+    height: 16px;
+    position: absolute;
+    width: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .center-point::after {
+    content: '';
+    background-color: var(--primary-color);
+    width: 3px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .time {
+    font-family: serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* color: black; */
+  }
+
+  .date .circle {
+    /* background-color: var(--primary-color); */
+    /* color: var(--secondary-color); */
+    height: 16px;
+    /* color: #414141; */
+    width: 16px;
+    letter-spacing: 1px;
+    display: inline-flex;
+    line-height: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    border-radius: 50%;
+    transform: all 0.5s ease-in;
+    font-size: 13px;
+  }
+
+  .date {
+    /* color: #414141; */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+</style>
+
+<body>
+  <button class="toggle" onclick="btn()" id="button">Dark Mode</button>
+  <div class="clock-container">
+    <div class="clock">
+      <div class="needle hour"></div>
+      <div class="needle minute"></div>
+      <div class="needle second"></div>
+      <div class="center-point"></div>
+    </div>
+    <div class="time"></div>
+    <div class="date"></div>
+  </div>
+</body>
+<script>
+  let hourEL = document.querySelector('.hour')
+  let minutEL = document.querySelector('.minute')
+  let secondEL = document.querySelector('.second')
+  let timeEL = document.querySelector('.time')
+  let dateEL = document.querySelector('.date')
+  let toggle = document.querySelector('.toggle')
+
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  toggle.addEventListener('click', (e) => {
+    const html = document.querySelector('html')
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark')
+      e.target.innerHTML = 'Dark mode'
+    } else {
+      html.classList.add('dark')
+      e.target.innerHTML = 'Light mode'
+    }
+  })
+
+  // Time Fnuction
+  function setTime() {
+    let time = new Date()
+    let month = time.getMonth()
+    let day = time.getDay()
+    let date = time.getDate();
+    let hour = time.getHours();
+    let hourforclk = hour >= 13 ? hour % 12 : hour;
+
+    let minute = time.getMinutes()
+    let second = time.getSeconds()
+
+    let amps = hour >= 12 ? 'PM' : 'Am'
+    hourEL.style.transform = `translate(-50%, -100%) rotate(${scale(hourforclk, 0, 12, 0, 360)}deg)`
+    minutEL.style.transform = `translate(-50%, -100%) rotate(${scale(minute, 0, 60, 0, 360)}deg)`  // ✅ 60 instead of 12
+    secondEL.style.transform = `translate(-50%, -100%) rotate(${scale(second, 0, 60, 0, 360)}deg)`  // ✅ 60 instead of 12
+    timeEL.innerHTML = `${hourforclk}:${minute < 10 ? `0${minute}` : minute}${amps}`
+    dateEL.innerHTML = `${days[day]},${months[month]}<span class="circle">${date}</span>`
+
+
+  }
+  let scale = (num, in_min, in_max, out_min, out_max) => {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
+  setTime()
+  setInterval(setTime, 1000);
+
+  let isDark = false;
+
+  function btn() {
+    if (!isDark) {
+      document.body.style.backgroundColor = "black";
+      document.body.style.color = "white";
+      document.getElementById('button').innerText = "Light Mode";
+      isDark = true;
+    } else {
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "black";
+      document.getElementById('button').innerText = "Dark Mode";
+      isDark = false;
+    }
+  }
+</script>
+
+</html>

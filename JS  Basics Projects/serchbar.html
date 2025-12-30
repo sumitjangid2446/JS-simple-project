@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        justify-content: center;
+        height: 100vh;
+        display: flex;
+        background-color: aliceblue;
+        align-items: center;
+    }
+
+    .search-bar-container {
+        display: flex;
+        padding: 5px;
+        width: 300px;   
+        height: 50px;
+        border-radius: 50px;
+        align-items: center;
+        box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2),
+               -6px -6px 10px rgba(255, 255, 255, 0.7);
+        margin: 10px;
+        position: relative;  
+        transition: width 1.5s;
+    }
+
+    .magnifier {
+        width: 25px;
+        position: absolute;
+        cursor: pointer;
+        left: 20px;
+    }
+
+    .mic-icon {
+        width: 30px;
+        position: absolute;
+        right: 10px;
+        transition: width 0.4s 1s;
+
+    }
+
+    .input {
+        background-color: transparent;
+        border: none;
+        margin: 10px 5px;
+        width: 100%;  
+        outline: none;
+        color: rgb(100, 100, 100);
+        transition: width 1s;
+        transition-delay: 0.5s;
+    }
+
+    .active.search-bar-container {
+        width: 50px;
+    }
+
+    .active.input {
+        width: 0;
+    }
+
+
+    .active .mic-icon {
+        width: 0;
+    }
+</style>
+
+<body>
+    <div class="search-bar-container active">
+        <img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/magnifier-512.png" alt="magnifier"
+        class="magnifier"
+        />
+        <input type="text" class="input" placeholder="Search ..." />
+        <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-25-512.png" alt="mic-icon"
+            class="mic-icon"/>
+    </div>
+</body>
+<script>
+    let searchBarContainerEl = document.querySelector(".search-bar-container")
+    let magnifierEl = document.querySelector(".magnifier")
+    magnifierEl.addEventListener("click", () => {
+    searchBarContainerEl.classList.toggle("active")
+    })
+</script>
+</html>

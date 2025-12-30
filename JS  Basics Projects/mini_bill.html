@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Invoice</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #dff9fb, #c7ecee);
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+      
+    }
+
+    .invoice-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      border-radius: 3px solid #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d3436;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0652dd; 
+    }
+
+    #out {
+      margin-top: 25px;
+      background: #fdfdfd;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      line-height: 1.8;
+      font-size: 16px;
+      color: #2d3436;
+      border-bottom: 5px solid #09b0e3;
+      border-top: 5px solid #09cae3;
+      border-right: 5px solid #0984e3;
+      border-left: 5px solid #0984e3;
+    }
+
+    #out b {
+      color: #0984e3;
+    }
+
+    #out span {
+      font-weight: bold;
+      color: green;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="invoice-box">
+    <h2>🧾 Mini Invoice</h2>
+
+    <label>Client Name</label>
+    <input id="name" placeholder="Enter Client Name">
+
+    <label>Product</label>
+    <input id="product" placeholder="Enter Product Name">
+
+    <label>Quantity</label>
+    <input id="qty" type="number" placeholder="e.g. 2">
+
+    <label>Price (₹)</label>
+    <input id="price" type="number" placeholder="e.g. 100">
+
+    <button onclick="gen()">Generate Bill</button>
+
+    <div id="out"></div>
+  </div>
+
+  
+  <script>
+    function gen() {
+      let n = name.value, p = product.value;
+      let q = +qty.value, r = +price.value;
+      let t = q * r, gst = t * 0.18, g = t + gst;
+
+      out.innerHTML = `
+        <hr>
+        <b>Client Name:</b> ${n}<br>
+        <b>Product:</b> ${p}<br>
+        <b>Quantity:</b> ${q}<br>
+        <b>Price:</b> ₹${r}<br>
+        <b>Subtotal:</b> ₹${t.toFixed(2)}<br>
+        <b>GST (18%):</b> ₹${gst.toFixed(2)}<br>
+        <b>Total Amount:</b> <span>₹${g.toFixed(2)}</span>
+      `;
+    }
+  </script>
+
+</body>
+</html>
