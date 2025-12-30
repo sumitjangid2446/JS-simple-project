@@ -1,26 +1,22 @@
-# JavaScript Projects
+# JavaScript Projects ✨
 
-This repository contains my JavaScript projects built to improve logic, DOM manipulation, and frontend skills.
+A collection of simple and interactive JavaScript projects made to practice logic and DOM manipulation.
 
-## 🚀 Projects Included
-- DOM based mini projects  
-- Interactive UI features  
-- Beginner to intermediate level logic  
+## ⚡ What’s Inside
+- Small JS mini projects  
+- DOM & event based features  
+- Clean and easy-to-read code  
 
-## 🛠️ Tech Stack
-- HTML5  
-- CSS3  
-- JavaScript (ES6)  
+## 🧩 Built With
+- HTML  
+- CSS  
+- JavaScript  
 
-## ▶️ How to Use
-1. Clone or download the repository  
-2. Open project folder  
-3. Run `index.html` in any browser  
+## ▶️ Run Projects
+Just open `index.html` in your browser.
 
-## 🎯 Learning Goals
-- Strong JavaScript fundamentals  
-- DOM manipulation & events  
-- Clean and readable code  
+## 🎯 Goal
+Learning JavaScript by building real projects.
 
 ---
-⭐ Star this repository if you find it useful!
+⭐ Feel free to explore and star the repo
